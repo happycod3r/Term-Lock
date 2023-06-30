@@ -42,7 +42,7 @@ Placing the call at the top of your ***.zshrc*** or your ***.bashrc*** will have
 TERM_LOCK="~/term-lock"
 [[ -f "${TERM_LOCK}/term-lock.sh" ]] && { source "${TERM_LOCK}/term-lock.sh"; term_lock; }
 
-# .....
+# Everything else ...
 ```
 
 **Zsh**
@@ -52,6 +52,8 @@ TERM_LOCK="~/term-lock"
 # with the new path
 TERM_LOCK="~/term-lock"
 [[ -f "${TERM_LOCK}/term-lock.zsh" ]] && { builtin source "${TERM_LOCK}/term-lock.zsh"; term_lock; }
+
+# Everything else ...
 ```
 
 Once the `term-lock.sh` script is sourced at the top of your ***.bashrc*** or ***.zshrc*** you will now have to enter a 4 digit pin when you start the terminal.
