@@ -38,6 +38,7 @@ function term_lock() {
             fi
         }
 
+        reset_pin="$1"
         CONFIG_DIRECTORY="${${(%):-%x}:h}/.config/term-lock/"
         PIN_FILE="${CONFIG_DIRECTORY}/.pin.conf"
         DONE="false"
@@ -45,6 +46,17 @@ function term_lock() {
 
         if [[ ! -d "$CONFIG_DIRECTORY" ]]; then
             mkdir -p "$CONFIG_DIRECTORY"
+        fi
+
+        if [[ "$reset_pin" == "true" ]]; then
+            # Instead of writing a whole knew section or function to reset the pin 
+            # I figured I could simply delete the pin file based on an argument.
+            # That way the check for it fails and you get treated as a new user essentially
+            # resetting your pin.
+            sudo rm $PIN_FILE || {
+                io::err "Failed to remove old pin. Make sure you have permissions!"
+                return 1
+            }
         fi
 
         while [[ "$DONE" == "false" ]]; do
