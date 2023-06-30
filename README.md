@@ -12,7 +12,7 @@
 ## [About](#about)
 
 Term-Lock is a simple 1 way authentification system that allows you to block access and add a layer of security to your terminal by prompting for a pin which is then encrypted and stored on the system in a hidden folder and file.
-You can use this as a stand-alone script or integrate it easily into anything else. Since Term-Lock is wrapped into one function, it's all that needs to be called to work, so you can place it wherever you want. If you have some functionality you want to block or a route in the control flow of your code you want to protect and secure access to, simply place a call to `term_lock` before it and this will put a barrier between what you want to protect and unauthorized usage and you will now need a pin to continue the control flow or move on in any instance. 
+You can use this as a stand-alone script or integrate it easily into anything else. Since Term-Lock is wrapped into one function, it's all that needs to be called to work and you can place the call to term_lock wherever you want. If you have some functionality you want to block or a route in the control flow of your code you want to protect and secure access to, just place a call to `term_lock` before it, and this will put a barrier between what you want to protect and unauthorized usage. You will now need a pin to continue the control flow or move on in any instance. 
 
 For example check out this hypothetical function call stack: 
 ```bash
@@ -34,13 +34,15 @@ Placing the call at the top of your ***.zshrc*** or your ***.bashrc*** will have
 
 **Bash**
 
-1) To use term-lock add the following line to the top of your ***.bashrc*** or ***.zshrc*** file.
+1) To use term-lock to create a pin and lock down access to your terminal add the following code to the very top of your ***.bashrc*** or ***.zshrc*** file.
 
 ```bash
 # Put the term-lock folder where you would like then update the $TERM_LOCK variable
 # with the new path
 TERM_LOCK="~/term-lock"
 [[ -f "${TERM_LOCK}/term-lock.sh" ]] && { source "${TERM_LOCK}/term-lock.sh"; term_lock; }
+
+# .....
 ```
 
 **Zsh**
@@ -49,7 +51,7 @@ TERM_LOCK="~/term-lock"
 # Put the term-lock folder where you would like then update the $TERM_LOCK variable
 # with the new path
 TERM_LOCK="~/term-lock"
-[[ -f "${TERM_LOCK}/term-lock.sh" ]] && { builtin source "${TERM_LOCK}/term-lock.zsh"; term_lock; }
+[[ -f "${TERM_LOCK}/term-lock.zsh" ]] && { builtin source "${TERM_LOCK}/term-lock.zsh"; term_lock; }
 ```
 
 Once the `term-lock.sh` script is sourced at the top of your ***.bashrc*** or ***.zshrc*** you will now have to enter a 4 digit pin when you start the terminal.
@@ -59,10 +61,14 @@ If you want to reset your pin change the line above where the `term_lock` functi
 
 ```bash
    TERM_LOCK="~/term-lock"
-[[ -f "${TERM_LOCK}/term-lock.sh" ]] && { source "${TERM_LOCK}/term-lock.sh"; term_lock "true"; }
+[[ -f "${TERM_LOCK}/term-lock.zsh" ]] && { builtin source "${TERM_LOCK}/term-lock.zsh"; term_lock "true"; }
 ```
 
-Once you finish resetting your pin remove the ***"true"*** so that you don't reset your pin over and over.
+Once you finish resetting your pin remove the value ***"true"*** that you added so that you don't reset your pin over again by accident.
+
+You can also alternatively manually delete the `.pin.conf` file created by Term-Lock to hard reset your pin.
+Since Term-Lock uses this file as a flag, it will prompt you to create a new pin when it doesn't detect it.
+
 
 ```bash 
 #Change 
