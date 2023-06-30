@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # To disable the pin simply set USE_PIN to "false"
 USE_PIN="true"
 
@@ -39,7 +37,7 @@ function term_lock() {
         }
 
         reset_pin="$1"
-        CONFIG_DIRECTORY="${${(%):-%x}:h}/.config/term-lock/"
+        CONFIG_DIRECTORY="${HOME}/.config/term-lock/"
         PIN_FILE="${CONFIG_DIRECTORY}/.pin.conf"
         DONE="false"
         new_user="true"
@@ -160,5 +158,3 @@ Pin or (q) to quit"
     fi    
 
 }
-
-term_lock

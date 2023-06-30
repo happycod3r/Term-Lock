@@ -11,19 +11,21 @@
 ```
 ## [About](#about)
 
-Term-Lock is a simple pin system that allows you to block access and add a layer of security to your terminal.
-You can use this as a stand-alone script or integrate it easily into anything else. Since Term-Lock is wrapped into one function it only needs to be called to work, so you can place it wherever you want. If you have some functionality or code that you want to protect, simply place a call to `term_lock` before it and this will put a barrier between what you want to protect and unauthorized usage and you will now need a pin to continue the control flow. 
+Term-Lock is a simple 1 way authentification system that allows you to block access and add a layer of security to your terminal by prompting for a pin which is then encrypted and stored on the system in a hidden folder and file.
+You can use this as a stand-alone script or integrate it easily into anything else. Since Term-Lock is wrapped into one function, it's all that needs to be called to work, so you can place it wherever you want. If you have some functionality you want to block or a route in the control flow of your code you want to protect and secure access to, simply place a call to `term_lock` before it and this will put a barrier between what you want to protect and unauthorized usage and you will now need a pin to continue the control flow or move on in any instance. 
 
 For example check out this hypothetical function call stack: 
 ```bash
-init
-set_up_data
-do_stuff
-do_more_stuff
-term_lock
-pass_ctrl_to_user
+init               # 1) called 1st
+set_up_data        # 2) called 2nd
+do_stuff           # 3) called 3rd
+do_more_stuff      # 4) called 4th
+term_lock          # 5) prompts for the pin
+pass_ctrl_to_user  # 6) If wrong/no pin entered in step 5 this never gets called.
 ```
-In the above example you will now no longer be able to reach `pass_ctrl_to_user` without entering the correct pin effectivley holding back unauthorized usage.
+In the above example you will now no longer be able to reach `pass_ctrl_to_user` without entering the correct pin holding back unauthorized usage.
+
+Placing the call at the top of your ***.zshrc*** or your ***.bashrc*** will have the same effect as above effectively locking down your terminal by blocking further execution unless you have the pin. Follow the [usage](#usage) section below to set it up.
 
 ---
 
@@ -68,6 +70,14 @@ term_lock "true"
 #to...
 term_lock
 
+
+```
+
+You can use term_lock in many ways. Here's some examples:
+
+```bash
+if [[ $login == "true" ]]; then
+   term_lock
 
 ```
 
