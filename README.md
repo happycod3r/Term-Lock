@@ -11,6 +11,17 @@
 ```
 > If you need to stop unauthorized access to your terminal Term-Lock is a simple solution
 
+- [About](#about)
+- [Install](#install)
+- [Usage](#usage)
+  - [Integration](#integration)
+- [Notes](#notes)
+- [Contributing](#contributing)
+- [Security](#security)
+- [Contacts](#contacts)
+
+---
+
 ## [About](#about)
 
 Term-Lock is a simple 1 way authentification system that allows you to block access and add a layer of security to your terminal by prompting for a pin which is then encrypted and stored on the system in a hidden file and folder.
@@ -34,7 +45,7 @@ Placing the call at the top of your ***.zshrc*** or your ***.bashrc*** will have
 
 ---
 
-## [Installation](#installation)
+## [Install](#install)
 
 To download and install Term-Lock follow these steps
 
