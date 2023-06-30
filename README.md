@@ -11,8 +11,11 @@
 ```
 ## [About](#about)
 
-Term-Lock is a simple 1 way authentification system that allows you to block access and add a layer of security to your terminal by prompting for a pin which is then encrypted and stored on the system in a hidden folder and file.
+Term-Lock is a simple 1 way authentification system that allows you to block access and add a layer of security to your terminal by prompting for a pin which is then encrypted and stored on the system in a hidden file and folder.
+
 You can use this as a stand-alone script or integrate it easily into anything else. Since Term-Lock is wrapped into one function, it's all that needs to be called to work and you can place the call to term_lock wherever you want. If you have some functionality you want to block or a route in the control flow of your code you want to protect and secure access to, just place a call to `term_lock` before it, and this will put a barrier between what you want to protect and unauthorized usage. You will now need a pin to continue the control flow or move on in any instance. 
+
+I do plan on building on this in the near future to make it more secure with better encryption methods and functionality in general. I also plan on adding the option to change the pin size for tighter security. Right now though, Term-Lock v1.0.0 works well, is lightweight, and easy to use.  
 
 For example check out this hypothetical function call stack: 
 ```bash
@@ -28,6 +31,20 @@ In the above example you will now no longer be able to reach `pass_ctrl_to_user`
 Placing the call at the top of your ***.zshrc*** or your ***.bashrc*** will have the same effect as above effectively locking down your terminal by blocking further execution unless you have the pin. Follow the [usage](#usage) section below to set it up.
 
 ---
+
+## [Installation](#installation)
+
+To download and install Term-Lock follow these steps
+
+1) Pick a directory to download it to:
+```bash
+cd where/I/want/
+```
+
+2) Paste the following line into your terminal and press the `Enter (^M)` key:
+```bash
+curl https://github.com/happycod3r/Term-Lock.git
+```
 
 ## [Usage](#usage)
 
@@ -91,15 +108,17 @@ if [[ $login == "true" ]]; then
 
 ### Integration
  
-You can also integrate Term-Lock easily into anything really by copying the function and placing it where you would like. For integration purposes there is also the `$USE_PIN` variable, which by default is set to `true`.
-You can set it to `false` to turn off Term-lock and bypass the pin. In this way it acts as a switch that you can easily write some code to turn on/off based on whatever conditions.
+You can also integrate Term-Lock easily into anything really by copying the function and placing it where you would like or sourcing it as described in the beginning of this section.
+
+For integration purposes there is the `$USE_PIN` variable, which by default is set to `true`.
+You can set it to `false` to turn off Term-lock and bypass the pin. In this way it acts as a switch that you can easily write some code to turn on/off based on whatever conditions. 
 
 ```bash 
 if [[ $some_condition == "true" ]]; then
    # Won't ask for pin next time around.
    USE_PIN="false"
 elif [[ $some_condition == "false" ]]; then
-   # Block access, ask for pin.
+   # Block access, ask for pin on next run.
    USE_PIN="true"
 fi
 ```
