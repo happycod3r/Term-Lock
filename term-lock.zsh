@@ -22,7 +22,7 @@ function term_lock() {
             echo -e "${CYAN}[Term-Lock] ${PURPLE}$*${NC}"
         }
 
-        encode() {
+        function encode() {
             if [[ $# -eq 0 ]]; then
                 cat | base64
             else
@@ -30,7 +30,7 @@ function term_lock() {
             fi
         }
 
-        decode() {
+        function decode() {
             if [[ $# -eq 0 ]]; then
                 cat | base64 --decode
             else
@@ -38,13 +38,25 @@ function term_lock() {
             fi
         }
 
-        CONFIG_DIRECTORY="${${(%):-%x}:h}/.config/term-lock/"
+        reset_pin="$1"
+        CONFIG_DIRECTORY="${HOME}/.config/term-lock/"
         PIN_FILE="${CONFIG_DIRECTORY}/.pin.conf"
         DONE="false"
         new_user="true"
 
         if [[ ! -d "$CONFIG_DIRECTORY" ]]; then
             mkdir -p "$CONFIG_DIRECTORY"
+        fi
+
+        if [[ "$reset_pin" == "true" ]]; then
+            # Instead of writing a whole knew section or function to reset the pin 
+            # I figured I could simply delete the pin file based on an argument.
+            # That way the check for it fails and you get treated as a new user essentially
+            # resetting your pin.
+            sudo rm $PIN_FILE || {
+                out "Failed to remove old pin. Make sure you have permissions!"
+                return 1
+            }
         fi
 
         while [[ "$DONE" == "false" ]]; do

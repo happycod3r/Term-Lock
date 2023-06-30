@@ -20,7 +20,7 @@ function term_lock() {
             echo -e "${CYAN}[Term-Lock] ${PURPLE}$*${NC}"
         }
 
-        encode() {
+        function encode() {
             if [[ $# -eq 0 ]]; then
                 cat | base64
             else
@@ -28,7 +28,7 @@ function term_lock() {
             fi
         }
 
-        decode() {
+        function decode() {
             if [[ $# -eq 0 ]]; then
                 cat | base64 --decode
             else
@@ -52,7 +52,7 @@ function term_lock() {
             # That way the check for it fails and you get treated as a new user essentially
             # resetting your pin.
             sudo rm $PIN_FILE || {
-                io::err "Failed to remove old pin. Make sure you have permissions!"
+                out "Failed to remove old pin. Make sure you have permissions!"
                 return 1
             }
         fi
