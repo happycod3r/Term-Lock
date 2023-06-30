@@ -9,6 +9,8 @@
    |_|   |______||_|  \_\|_|  |_|        |______| \____/  \_____||_|\_\
                                                    
 ```
+> If you need to stop unauthorized access to your terminal Term-Lock is a simple solution
+
 ## [About](#about)
 
 Term-Lock is a simple 1 way authentification system that allows you to block access and add a layer of security to your terminal by prompting for a pin which is then encrypted and stored on the system in a hidden file and folder.
