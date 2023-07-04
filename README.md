@@ -13,6 +13,10 @@
 
 - [About](#about)
 - [Install](#install)
+  - [Manual Install](#manual_install)
+  - [Command Line Install](#command_line_install)
+    - [Using Git Clone](#git_clone)
+    - [Using Curl](#curl)
 - [Usage](#usage)
   - [Integration](#integration)
 - [Notes](#notes)
@@ -47,7 +51,30 @@ Placing the call at the top of your ***.zshrc*** or your ***.bashrc*** will have
 
 ## [Install](#install)
 
-To download and install Term-Lock follow these steps
+To download and install Term-Lock follow choose an install method and follow the corresponding steps. Once
+fininshed jump to the [Usage](#usage) section.
+
+### [Manual Install](#manual_install) 
+
+1. Download and place the ***zsh-toggles*** folder in a location of your choosing.
+2. Next source the script as shown in the [Usage](#usage) section. 
+
+### [Command Line Install](#command_line_install)
+
+#### [Using Git Clone:](#git_clone)
+
+1) Open your terminal and navigate to the directory where you want to clone the repository: 
+
+```bash
+cd where/I/want/to/install
+```
+
+2) Next run the following command to clone the repository to the chosen location:
+```bash
+git clone https://github.com/happycod3r/Term-Lock.git
+```
+
+#### [Using Curl:](#curl)
 
 1) Pick a directory to download it to:
 ```bash
