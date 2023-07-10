@@ -18,6 +18,8 @@
     - [Using Git Clone](#git_clone)
     - [Using Curl](#curl)
 - [Usage](#usage)
+  - [Stand Alone](#standalone)
+  - [Oh-My-Zsh](#ohmyzsh)
   - [Integration](#integration)
 - [Notes](#notes)
 - [Contributing](#contributing)
@@ -30,7 +32,7 @@
 
 Term-Lock is a simple 1 way authentification system that allows you to block access and add a layer of security to your terminal by prompting for a pin which is then encrypted and stored on the system in a hidden file and folder.
 
-You can use this as a stand-alone script or integrate it easily into anything else. Since Term-Lock is wrapped into one function, it's all that needs to be called to work and you can place the call to term_lock wherever you want. If you have some functionality you want to block or a route in the control flow of your code you want to protect and secure access to, just place a call to `term_lock` before it, and this will put a barrier between what you want to protect and unauthorized usage. You will now need a pin to continue the control flow or move on in any instance. 
+You can use this as a stand-alone script or integrate it easily into frameworks such as oh-my-zsh. Since Term-Lock is wrapped into one function, it's all that needs to be called to work and you can place the call to term_lock wherever you want. If you have some functionality you want to block or a route in the control flow of your shell code that you want to protect and secure access to, just place a call to `term_lock` before it, and this will put a barrier between what you want to protect and unauthorized usage. You will now need a pin to continue the control flow or move on in any instance. 
 
 I do plan on building on this in the near future to make it more secure with better encryption methods and functionality in general. I also plan on adding the option to change the pin size for tighter security. Right now though, Term-Lock v1.0.0 works well, is lightweight, and easy to use.  
 
@@ -88,6 +90,21 @@ curl https://github.com/happycod3r/Term-Lock.git
 
 ## [Usage](#usage)
 
+### [oh-my-zsh](#ohmyzsh)
+
+To use **term-lock** with **oh-my-zsh** follow these steps:
+
+1) Simply move the term-lock folder to the `~/.oh-my-zsh/custom/plugins` directory and then add ***term-lock*** to the ***plugins*** array in your ***~/.zshrc*** file.
+
+```bash
+plugins=(... term-lock ...)
+```
+
+2) If you don't want any plugins to load before term-lock, then place ***term-lock*** first in the ***plugins*** array. If you want term-lock to run even before **oh-my-zsh** all together then see the next section on [Stand Alone](#standalone) usage.
+
+```bash
+plugins=(term-lock ... ...)
+```
 
 **Bash**
 
